@@ -115,3 +115,56 @@ const data = [
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
+function haberYapici(haber){
+const news=document.createElement("div");
+news.classList.add("article")
+
+const header=document.createElement("h2");
+header.textContent=haber.baslik;
+news.appendChild(header);
+
+const tarih=document.createElement("p");
+tarih.textContent=haber.tarih
+tarih.classList.add("date");
+news.appendChild(date);
+
+const paragraf1=document.createElement("p");
+paragraf1.textContent=haber.ilkParagraf;
+news.appendChild(paragraf1);
+
+const paragraf2=document.createElement("p");
+paragraf2.textContent=haber.ikincikParagraf;
+news.appendChild(paragraf2);
+
+const paragraf3=document.createElement("p");
+paragraf3.textContent=haber.ucuncuParagraf;
+news.appendChild(paragraf3);
+
+const expandBtn=document.createElement("span");
+expandBtn.textContent="+"
+expandBtn.classList.add("expandButton");
+news.appendChild(expandBtn);
+
+expandBtn.addEventListener("click",(event)=>{
+  const acikHaber=document.querySelector(".article-open");
+
+
+if(acikHaber !=null) {
+  acikHaber.classList.remove("article-open");
+  acikHaber.querySelector("span").textContent="+"}
+  if(!event.target.parentElement.classList.contains("article-open")){
+    news.classList.add("article-open");
+    expandBtn.textContent="-";
+  }
+  news.classList.toggle("article-open");
+ 
+})
+return news
+
+}
+
+const articles=document.querySelector(".articles")
+data.forEach(item=>{
+  articles.appendChild(haberYapici(item))
+    
+})
